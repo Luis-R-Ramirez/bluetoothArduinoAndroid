@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+
+    <TextView
+        android:id="@+id/mensaje1"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="texto"
+        android:lines="2"
+        android:maxLines="2"
+        android:textSize="16dp"/>
+    <View
+        android:id="@+id/barra"
+        android:layout_below="@id/mensaje1"
+        android:layout_width="fill_parent"
+        android:layout_height="3dip"
+        android:background="#A0A0A0" />
+
+
+
+    <LinearLayout
+        android:id="@+id/primero"
+        android:layout_below="@id/barra"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:singleLine="false">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>

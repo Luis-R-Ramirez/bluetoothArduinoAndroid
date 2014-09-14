@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_interfaz" default="compile.module.interfaz">
+  <dirname property="module.interfaz.basedir" file="${ant.file.module_interfaz}"/>
+  
+  <property name="module.jdk.home.interfaz" value="${jdk.home.android_2.3.3_google_apis}"/>
+  <property name="module.jdk.bin.interfaz" value="${jdk.bin.android_2.3.3_google_apis}"/>
+  <property name="module.jdk.classpath.interfaz" value="jdk.classpath.android_2.3.3_google_apis"/>
+  
+  <property name="compiler.args.interfaz" value="${compiler.args}"/>
+  
+  <property name="interfaz.output.dir" value="${module.interfaz.basedir}/out/production/interfaz"/>
+  <property name="interfaz.testoutput.dir" value="${module.interfaz.basedir}/out/test/interfaz"/>
+  
+  <path id="interfaz.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="interfaz.module.production.classpath">
+    <path refid="${module.jdk.classpath.interfaz}"/>
+  </path>
+  
+  <path id="interfaz.runtime.production.module.classpath">
+    <pathelement location="${interfaz.output.dir}"/>
+  </path>
+  
+  <path id="interfaz.module.classpath">
+    <path refid="${module.jdk.classpath.interfaz}"/>
+    <pathelement location="${interfaz.output.dir}"/>
+  </path>
+  
+  <path id="interfaz.runtime.module.classpath">
+    <pathelement location="${interfaz.testoutput.dir}"/>
+    <pathelement location="${interfaz.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.interfaz">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.interfaz">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.interfaz"/>
+  </patternset>
+  
+  <path id="interfaz.module.sourcepath">
+    <dirset dir="${module.interfaz.basedir}">
+      <include name="gen"/>
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.interfaz" depends="compile.module.interfaz.production,compile.module.interfaz.tests" description="Compile module interfaz"/>
+  
+  <target name="compile.module.interfaz.production" depends="register.custom.compilers" description="Compile module interfaz; production classes">
+    <mkdir dir="${interfaz.output.dir}"/>
+    <javac2 destdir="${interfaz.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.interfaz}/javac">
+      <compilerarg line="${compiler.args.interfaz}"/>
+      <bootclasspath refid="interfaz.module.bootclasspath"/>
+      <classpath refid="interfaz.module.production.classpath"/>
+      <src refid="interfaz.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.interfaz"/>
+    </javac2>
+    
+    <copy todir="${interfaz.output.dir}">
+      <fileset dir="${module.interfaz.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.interfaz"/>
+      </fileset>
+      <fileset dir="${module.interfaz.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.interfaz"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.interfaz.tests" depends="register.custom.compilers,compile.module.interfaz.production" description="compile module interfaz; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.interfaz" description="cleanup module">
+    <delete dir="${interfaz.output.dir}"/>
+    <delete dir="${interfaz.testoutput.dir}"/>
+  </target>
+</project>

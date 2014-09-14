@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Medidor.0</string>
+    <string name="nombre_app">Medidor</string>
+    <string name="mensaje_principal">
+
+        Medidor de consumo electrico para hogares y oficinas.
+
+    </string>
+
+
+    <string name="acercaDe">
+
+        "Each child of the is converted into an application resource object at compile-time, which can be referenced by the value in
+        element's name attribute. This example style lement is optional and specifies the resource ID of another style from which this style should inherit
+        properties. You can then override the inherited style properties if you want to.
+        Remember, a style that you want to use as an Activity or application theme is defined in XML exactly the same as a style for a View."
+
+    </string>
+
+</resources>
